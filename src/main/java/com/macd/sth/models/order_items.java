@@ -3,13 +3,11 @@ package com.macd.sth.models;
 public class order_items {
 
     private int id, quantity, amount;
-    private String modelNo;
 
-    public order_items(int id, int quantity, int amount, String modelNo) {
+    public order_items(int id, int quantity, int amount) {
         this.id = id;
         this.quantity = quantity;
         this.amount = amount;
-        this.modelNo = modelNo;
     }
 
     private order_items(){}
@@ -38,11 +36,4 @@ public class order_items {
         this.amount = amount;
     }
 
-    public String getModelNo() {
-        return modelNo;
-    }
-
-    public void setModelNo(String modelNo) {
-        this.modelNo = modelNo;
-    }
 }

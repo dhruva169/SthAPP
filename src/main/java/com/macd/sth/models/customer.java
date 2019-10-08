@@ -4,7 +4,7 @@ public class customer {
 
     private String fName;
     private String lName;
-    private String pan_no;
+    private String panNo;
     private String aadharNo;
     private String phoneNo;
     private String email;
@@ -12,19 +12,17 @@ public class customer {
     private String address;
     private String businessType;
 
-    private String username;
 
-    public customer(String fName, String lName, String pan_no, String aadharNo, String phoneNo, String email, int custId, String address, String businessType, String username) {
+    public customer(String fName, String lName, String panNo, String aadharNo, String phoneNo, String email, int custId, String address, String businessType) {
         this.fName = fName;
         this.lName = lName;
-        this.pan_no = pan_no;
+        this.panNo = panNo;
         this.aadharNo = aadharNo;
         this.phoneNo = phoneNo;
         this.email = email;
         this.custId = custId;
         this.address = address;
         this.businessType = businessType;
-        this.username = username;
     }
 
     public customer(){}
@@ -45,12 +43,12 @@ public class customer {
         this.lName = lName;
     }
 
-    public String getPan_no() {
-        return pan_no;
+    public String getPanNo() {
+        return panNo;
     }
 
-    public void setPan_no(String pan_no) {
-        this.pan_no = pan_no;
+    public void setPanNo(String panNo) {
+        this.panNo = panNo;
     }
 
     public String getAadharNo() {
@@ -101,11 +99,4 @@ public class customer {
         this.businessType = businessType;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
