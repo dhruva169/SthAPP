@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.transaction.annotation.Transactional;
-import sun.jvm.hotspot.ui.tree.SimpleTreeGroupNode;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
