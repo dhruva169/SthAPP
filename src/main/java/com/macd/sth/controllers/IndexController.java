@@ -14,7 +14,7 @@ public class IndexController {
         return "index.jsp";
     }
 
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String welcome(Model model) {
         model.addAttribute("name", "Home Page");
         model.addAttribute("description", "Page yet to be completed!");

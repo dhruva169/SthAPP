@@ -24,9 +24,8 @@ create table employee (
 
 -- implemented
 create table bank_deposits (
-    depositID int not null primary key auto_increment,
     amountDeposited int,
-    depositDate Date,
+    depositDate Date null primary key,
     empID int,
     foreign key (empID) references employee (empID)
 );
@@ -89,7 +88,8 @@ create table delivery (
 create table location (
     locationID int not null auto_increment primary key ,
     shelfNo int,
-    level int
+    modelNo int,
+    foreign key (modelNo) references tyre (modelNo)
 );
 
 

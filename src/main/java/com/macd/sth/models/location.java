@@ -1,12 +1,11 @@
 package com.macd.sth.models;
 
 public class location {
-    private int id, shelfno, level;
+    private int id, shelfno;
 
-    public location(int id, int shelfno, int level) {
+    public location(int id, int shelfno) {
         this.id = id;
         this.shelfno = shelfno;
-        this.level = level;
     }
 
     public int getId() {
@@ -25,11 +24,4 @@ public class location {
         this.shelfno = shelfno;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
 }

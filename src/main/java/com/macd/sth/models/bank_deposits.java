@@ -4,24 +4,15 @@ import java.util.Date;
 
 public class bank_deposits {
 
-    private int depostID, amountDeposited;
+    private int amountDeposited;
     private Date depositDate;
 
-    public bank_deposits(int depostID, int amountDeposited, Date depositDate) {
-        this.depostID = depostID;
+    public bank_deposits(int amountDeposited, Date depositDate) {
         this.amountDeposited = amountDeposited;
         this.depositDate = depositDate;
     }
 
     public bank_deposits(){}
-
-    public int getDepostID() {
-        return depostID;
-    }
-
-    public void setDepostID(int depostID) {
-        this.depostID = depostID;
-    }
 
     public int getAmountDeposited() {
         return amountDeposited;
