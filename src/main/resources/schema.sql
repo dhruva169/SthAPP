@@ -72,7 +72,7 @@ create table orders (
     type varchar (25)
 );
 
-
+-- implemented
 create table delivery (
     deliveryID int not null primary key auto_increment,
     deliveryAddress varchar (200),
@@ -92,7 +92,7 @@ create table location (
     foreign key (modelNo) references tyre (modelNo)
 );
 
-
+-- implemented
 create table tyre (
     modelNo varchar (25) not null primary key,
     vehicleType varchar (25),
@@ -104,7 +104,7 @@ create table tyre (
     foreign key (locationID) references location (locationID)
 );
 
-
+-- implemented
 create table inventory (
     id int not null primary key auto_increment,
     quantity int,
@@ -112,7 +112,7 @@ create table inventory (
     foreign key (modelNo) references tyre (modelNo)
 );
 
-
+-- implemented
 create table order_items (
     id int not null primary key auto_increment,
     quantity int,
@@ -123,6 +123,7 @@ create table order_items (
     foreign key (orderID) references orders (orderID)
 );
 
+-- implemented
 create table supplier (
     fname varchar (25),
     lname varchar (25),
