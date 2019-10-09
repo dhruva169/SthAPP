@@ -8,7 +8,7 @@ public interface ToDoDao {
 
     void addTask(int empID, todo task);
     void deleteTask(int taskID);
-    void updateTask(todo task);
+    void updateTask(todo task, int empID);
     List<todo> getAllTasks();
     todo getTask(int taskID);
 }

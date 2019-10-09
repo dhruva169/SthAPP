@@ -59,7 +59,7 @@ create table vehicle (
     dtOfMaintenance date,
     distanceCovered int,
     dieselAvailable int,
-    isAvailable int
+    isAvailable boolean
 );
 
 -- implemented
@@ -97,7 +97,7 @@ create table tyre (
     modelNo varchar (25) not null primary key,
     vehicleType varchar (25),
     design varchar (25),
-    isTubeless int,
+    isTubeless boolean,
     price int,
     percentDiscount int,
     locationID int,

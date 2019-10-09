@@ -3,50 +3,48 @@ package com.macd.sth.dao;
 
 import com.macd.sth.models.todo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 public class ToDoDaoImpl implements ToDoDao {
 
     @Autowired
-    DataSource datasource;
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
-    }
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @Override
     public void addTask(int empID, todo task) {
         String sql = "insert into todo(empID, dueDate, inDate, task) values(?,?,?,?)";
-        Object[] objects = {empID, task.getDueDate(), task.getInDate(), task.getTask()};
-        jdbcTemplate.update(sql,objects);
+        jdbcTemplate.update(sql, empID, task.getDueDate(), task.getInDate(), task.getTask());
     }
 
     @Override
     public void deleteTask(int taskID) {
         String sql = "delete from todo where taskID=?";
-        jdbcTemplate.update(sql);
+        jdbcTemplate.update(sql, taskID);
     }
 
     @Override
-    public void updateTask(todo task) {
-
+    public void updateTask(todo task, int empID) {
+        String sql = "update todo set dueDate=?, task=?, empID=? where taskID=?";
+        jdbcTemplate.update(sql, task.getDueDate(), task.getTask(), empID);
     }
 
     @Override
     public List<todo> getAllTasks() {
-        return null;
+        String sql = "select * from todo";
+        RowMapper<todo> rowMapper = new BeanPropertyRowMapper<todo>(todo.class);
+        return this.jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public todo getTask(int taskID) {
-//        String sql = "select task from todo where taskID=?";
-        return null;
+
+        String sql = "select * from todo where taskID=?";
+        RowMapper<todo> rowMapper = new BeanPropertyRowMapper<todo>(todo.class);
+        todo task = jdbcTemplate.queryForObject(sql, rowMapper, taskID);
+        return task;
     }
 }
