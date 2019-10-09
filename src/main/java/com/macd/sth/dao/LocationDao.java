@@ -3,7 +3,7 @@ package com.macd.sth.dao;
 import com.macd.sth.models.location;
 
 public interface LocationDao {
-    int getLocationByModelNo(int modelNo);
-    void insertLocationByModelNo(int modelNo, location location);
-    void deleteLocationByModelNo(int modelNo);
+    location getLocationByModelNo(String modelNo);
+    void insertLocationByModelNo(String modelNo, location location);
+    void deleteLocationByModelNo(String modelNo);
 }
