@@ -5,11 +5,11 @@ import java.util.Date;
 public class vehicle {
 
     private String vehicleNo;
-    private Date dtOfMaintenance;
+    private String dtOfMaintenance;
     private int distanceCovered, dieselAvailable;
     private boolean isAvailable;
 
-    public vehicle(String vehicleNo, Date dtOfMaintenance, int distanceCovered, int dieselAvailable, boolean isAvailable) {
+    public vehicle(String vehicleNo, String dtOfMaintenance, int distanceCovered, int dieselAvailable, boolean isAvailable) {
         this.vehicleNo = vehicleNo;
         this.dtOfMaintenance = dtOfMaintenance;
         this.distanceCovered = distanceCovered;
@@ -27,11 +27,11 @@ public class vehicle {
         this.vehicleNo = vehicleNo;
     }
 
-    public Date getDtOfMaintenance() {
+    public String getDtOfMaintenance() {
         return dtOfMaintenance;
     }
 
-    public void setDtOfMaintenance(Date dtOfMaintenance) {
+    public void setDtOfMaintenance(String dtOfMaintenance) {
         this.dtOfMaintenance = dtOfMaintenance;
     }
 

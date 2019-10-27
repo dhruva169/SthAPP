@@ -5,9 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+@Repository
+@Transactional
 public class SupplierDaoImpl implements SupplierDao {
 
     @Autowired
@@ -28,8 +33,9 @@ public class SupplierDaoImpl implements SupplierDao {
 
     @Override
     public void updateSupplier(supplier supplier) {
-        String sql = "update supplier set phoneNo=?, email=? where suppID=?";
-        jdbcTemplate.update(sql, supplier.getPhoneNo(), supplier.getEmail(), supplier.getSuppId());
+        String sql = "update supplier set fName=?, lName=?, phoneNo=?, email=?, address=? where suppID=?";
+        jdbcTemplate.update(sql, supplier.getfName(), supplier.getLname(),supplier.getPhoneNo(), supplier.getEmail(),
+                supplier.getAddress() ,supplier.getSuppId());
     }
 
     @Override

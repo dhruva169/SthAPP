@@ -3,10 +3,9 @@ package com.macd.sth.models;
 public class tyre {
 
     private String modelNo, vehicleType, design;
-    private boolean isTubeless;
+    private String isTubeless;
     private int price, percentDiscount;
-
-    public tyre(String modelNo, String vehicleType, String design, boolean isTubeless, int price, int percentDiscount) {
+    public tyre(String modelNo, String vehicleType, String design, String isTubeless, int price, int percentDiscount) {
         this.modelNo = modelNo;
         this.vehicleType = vehicleType;
         this.design = design;
@@ -16,6 +15,14 @@ public class tyre {
     }
 
     public tyre(){}
+
+//    public int getLocationID() {
+//        return locationID;
+//    }
+//
+//    public void setLocationID(int locationID) {
+//        this.locationID = locationID;
+//    }
 
     public String getModelNo() {
         return modelNo;
@@ -41,12 +48,12 @@ public class tyre {
         this.design = design;
     }
 
-    public boolean isTubeless() {
+    public String getIsTubeless() {
         return isTubeless;
     }
 
-    public void setTubeless(boolean tubeless) {
-        isTubeless = tubeless;
+    public void setIsTubeless(String isTubeless) {
+        this.isTubeless = isTubeless;
     }
 
     public int getPrice() {

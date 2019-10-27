@@ -6,10 +6,11 @@ import java.util.List;
 
 public interface InventoryDao {
 
-    void addEntry(inventory inventory, String modelNo);
-    void deleteEntry(int id);
-    void updateEntry(inventory inventory, String modelNo);
+    void addEntry(inventory inventory);
+    void deleteEntry(String modelNo);
+    void updateEntry(inventory inventory);
     List<inventory> getCompleteInventory();
-    inventory getParticularInventory(int id);
+    inventory getParticularInventory(String modelNo);
+    inventory getStockByModelNo(String modelNo);
 
 }

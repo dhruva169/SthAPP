@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
+@Transactional
+@Repository
 public class VehicleDaoImpl implements VehicleDao {
 
     @Autowired
@@ -39,16 +43,16 @@ public class VehicleDaoImpl implements VehicleDao {
 
     @Override
     public void updateVehicle(vehicle vehicle) {
-        String sql = "update vehicle set dtOfMaintenance ,distanceCovered=?, dieselAvailable=?, isAvailable=? where vehicleNo=?";
+        String sql = "update vehicle set dtOfMaintenance=? ,distanceCovered=?, dieselAvailable=? where vehicleNo=?";
         jdbcTemplate.update(sql, vehicle.getDtOfMaintenance(), vehicle.getDistanceCovered(), vehicle.getDieselAvailable(),
-                vehicle.isAvailable(), vehicle.getVehicleNo());
+                vehicle.getVehicleNo());
     }
 
     @Override
     public void addVehicle(vehicle vehicle) {
-        String sql = "insert into vehicle(vehicleNO, dtOfMaintenance, distanceCovered, dieselAvailable, isAvailable)" +
-                "values(?,?,?,?,?)";
+        String sql = "insert into vehicle(vehicleNO, dtOfMaintenance, distanceCovered, dieselAvailable)" +
+                "values(?,?,?,?)";
         jdbcTemplate.update(sql, vehicle.getVehicleNo(), vehicle.getDtOfMaintenance(), vehicle.getDistanceCovered(),
-                vehicle.getDieselAvailable(), vehicle.isAvailable());
+                vehicle.getDieselAvailable());
     }
 }

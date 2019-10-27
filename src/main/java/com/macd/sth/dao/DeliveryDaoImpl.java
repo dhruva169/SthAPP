@@ -5,26 +5,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
 import java.util.List;
 
-//private int deliveryID;
-//private String deliveryAddress, vehicleNO;
-//private Date dateOfDelivery, dateOfOrderPlaced;
-//orderID, vehicleNo foreign key.
-
+@Repository
+@Transactional
 public class DeliveryDaoImpl implements DeliveryDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void addEntry(delivery delivery, int orderID, String vehicleNo) {
-        String sql = "insert into delivery(deliveryAddress, vehicleNo, dateOfDelivery, dateOfOrderPlaced, orderID, vehicleNo)" +
-                "values(?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, delivery.getDeliveryAddress(), delivery.getVehicleNO(), delivery.getDateOfDelivery(), delivery.getDateOfOrderPlaced(),
-                orderID, vehicleNo);
+    public void addEntry(delivery delivery) {
+        String sql = "insert into delivery(deliveryAddress, dateOfDelivery, dateOfOrderPlaced, orderID, vehicleNo)" +
+                "values(?,?,?,?,?)";
+        jdbcTemplate.update(sql, delivery.getDeliveryAddress(), delivery.getDateOfDelivery(), delivery.getDateOfOrderPlaced(),
+                delivery.getOrderID(), delivery.getVehicleNO());
+
     }
 
     @Override
@@ -34,13 +35,21 @@ public class DeliveryDaoImpl implements DeliveryDao {
     }
 
     @Override
-    public void updateEntry(delivery delivery, int orderID, String vehicleNo) {
-        String sql = "update delivery set deliveryAddress=?, dateOfDelivery=?, orderID=?, vehicleNo=?";
-        jdbcTemplate.update(sql, delivery.getDeliveryAddress(), delivery.getDateOfDelivery(), orderID, vehicleNo);
+    public void updateEntry(delivery delivery) {
+        String sql = "update delivery set deliveryAddress=?, dateOfDelivery=?, dateOfOrderPlaced=?, orderID=?, vehicleNo=? where deliveryID=?";
+        jdbcTemplate.update(sql, delivery.getDeliveryAddress(), delivery.getDateOfDelivery(), delivery.getDateOfOrderPlaced(),delivery.getOrderID(),
+                delivery.getVehicleNO(), delivery.getDeliveryID());
     }
 
     @Override
-    public List<delivery> getAllDeliveryByDateOfDelivery(Date date) {
+    public List<delivery> getAllDeliveryByDateOfDelivery(String date) {
+        String sql = "select * from delivery where dateOfDelivery=?";
+        RowMapper<delivery> rowMapper = new BeanPropertyRowMapper<delivery>(delivery.class);
+        return this.jdbcTemplate.query(sql, rowMapper, date);
+    }
+
+    @Override
+    public List<delivery> getAllDelivery() {
         String sql = "select * from delivery";
         RowMapper<delivery> rowMapper = new BeanPropertyRowMapper<delivery>(delivery.class);
         return this.jdbcTemplate.query(sql, rowMapper);

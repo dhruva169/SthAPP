@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ToDoDao {
 
-    void addTask(int empID, todo task);
+    void addTask(todo task);
     void deleteTask(int taskID);
-    void updateTask(todo task, int empID);
+    void updateTask(todo task);
     List<todo> getAllTasks();
     todo getTask(int taskID);
 }

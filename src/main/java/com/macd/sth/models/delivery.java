@@ -3,12 +3,13 @@ package com.macd.sth.models;
 import java.util.Date;
 
 public class delivery {
-    private int deliveryID;
+    private int deliveryID, orderID;
     private String deliveryAddress, vehicleNO;
-    private Date dateOfDelivery, dateOfOrderPlaced;
+    private String dateOfDelivery, dateOfOrderPlaced;
 
-    public delivery(int deliveryID, String deliveryAddress, String vehicleNO, Date dateOfDelivery, Date dateOfOrderPlaced) {
+    public delivery(int deliveryID, int orderID, String deliveryAddress, String vehicleNO, String dateOfDelivery, String dateOfOrderPlaced) {
         this.deliveryID = deliveryID;
+        this.orderID = orderID;
         this.deliveryAddress = deliveryAddress;
         this.vehicleNO = vehicleNO;
         this.dateOfDelivery = dateOfDelivery;
@@ -23,6 +24,14 @@ public class delivery {
 
     public void setDeliveryID(int deliveryID) {
         this.deliveryID = deliveryID;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
     public String getDeliveryAddress() {
@@ -41,19 +50,20 @@ public class delivery {
         this.vehicleNO = vehicleNO;
     }
 
-    public Date getDateOfDelivery() {
+    public String getDateOfDelivery() {
         return dateOfDelivery;
     }
 
-    public void setDateOfDelivery(Date dateOfDelivery) {
+    public void setDateOfDelivery(String dateOfDelivery) {
         this.dateOfDelivery = dateOfDelivery;
     }
 
-    public Date getDateOfOrderPlaced() {
+    public String getDateOfOrderPlaced() {
         return dateOfOrderPlaced;
     }
 
-    public void setDateOfOrderPlaced(Date dateOfOrderPlaced) {
+    public void setDateOfOrderPlaced(String dateOfOrderPlaced) {
         this.dateOfOrderPlaced = dateOfOrderPlaced;
     }
+
 }

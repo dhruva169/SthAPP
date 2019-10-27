@@ -1,16 +1,16 @@
 package com.macd.sth.models;
 
-import java.util.Date;
 
 public class todo {
 
-    private int taskId;
-    private Date dueDate;
-    private Date inDate;
+    private int taskId,empID;
+    private String dueDate;
+    private String inDate;
     private String task;
 
-    public todo(int taskId, Date dueDate, Date inDate, String task) {
+    public todo(int taskId, int empID, String dueDate, String inDate, String task) {
         this.taskId = taskId;
+        this.empID = empID;
         this.dueDate = dueDate;
         this.inDate = inDate;
         this.task = task;
@@ -26,19 +26,27 @@ public class todo {
         this.taskId = taskId;
     }
 
-    public Date getDueDate() {
+    public int getEmpID() {
+        return empID;
+    }
+
+    public void setEmpID(int empID) {
+        this.empID = empID;
+    }
+
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Date getInDate() {
+    public String getInDate() {
         return inDate;
     }
 
-    public void setInDate(Date inDate) {
+    public void setInDate(String inDate) {
         this.inDate = inDate;
     }
 

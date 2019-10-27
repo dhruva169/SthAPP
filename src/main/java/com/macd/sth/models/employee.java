@@ -7,14 +7,18 @@ public class employee {
     private String fName;
     private String lName;
     private String designation;
-    private Date joiningDate;
+    private String joiningDate;
     private String phoneNo;
     private int salary;
     private String username;
     private int empID;
     private String address;
+    private String password;
+    private String passwordConfirm;
+    private boolean enabled;
 
-    public employee(String fName, String lName, String designation, Date joiningDate, String phoneNo, int salary, String username, int empID, String address) {
+
+    public employee(String fName, String lName, String designation, String joiningDate, String phoneNo, int salary, String username, int empID, String address, String password, String passwordConfirm, boolean enabled) {
         this.fName = fName;
         this.lName = lName;
         this.designation = designation;
@@ -24,9 +28,13 @@ public class employee {
         this.username = username;
         this.empID = empID;
         this.address = address;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.enabled = enabled;
     }
 
-    public employee(){}
+    public employee() {
+    }
 
     public String getfName() {
         return fName;
@@ -52,11 +60,11 @@ public class employee {
         this.designation = designation;
     }
 
-    public Date getJoiningDate() {
+    public String getJoiningDate() {
         return joiningDate;
     }
 
-    public void setJoiningDate(Date joiningDate) {
+    public void setJoiningDate(String joiningDate) {
         this.joiningDate = joiningDate;
     }
 
@@ -98,5 +106,34 @@ public class employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return this.username + "/" + this.password;
     }
 }

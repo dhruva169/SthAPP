@@ -2,14 +2,17 @@ package com.macd.sth.models;
 
 public class inventory {
 
-    private int quantity, id;
 
-    public inventory(int quantity, int id) {
+    private int quantity, id;
+    private String modelNo;
+
+    public inventory(int quantity, int id, String modelNo) {
         this.quantity = quantity;
         this.id = id;
+        this.modelNo = modelNo;
     }
 
-    private inventory(){}
+    public inventory(){}
 
     public int getQuantity() {
         return quantity;
@@ -25,5 +28,13 @@ public class inventory {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getModelNo() {
+        return modelNo;
+    }
+
+    public void setModelNo(String modelNo) {
+        this.modelNo = modelNo;
     }
 }

@@ -6,18 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+@Repository
+@Transactional
 public class ToDoDaoImpl implements ToDoDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void addTask(int empID, todo task) {
+    public void addTask(todo task) {
         String sql = "insert into todo(empID, dueDate, inDate, task) values(?,?,?,?)";
-        jdbcTemplate.update(sql, empID, task.getDueDate(), task.getInDate(), task.getTask());
+        jdbcTemplate.update(sql, task.getEmpID(), task.getDueDate(), task.getInDate(), task.getTask());
     }
 
     @Override
@@ -27,9 +32,9 @@ public class ToDoDaoImpl implements ToDoDao {
     }
 
     @Override
-    public void updateTask(todo task, int empID) {
-        String sql = "update todo set dueDate=?, task=?, empID=? where taskID=?";
-        jdbcTemplate.update(sql, task.getDueDate(), task.getTask(), empID);
+    public void updateTask(todo task) {
+        String sql = "update todo set inDate=?,dueDate=?, task=?, empID=? where taskID=?";
+        jdbcTemplate.update(sql, task.getInDate(), task.getDueDate(), task.getTask(), task.getEmpID(), task.getTaskId());
     }
 
     @Override

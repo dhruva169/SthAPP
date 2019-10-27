@@ -5,20 +5,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+@Repository
+@Transactional
 public class TyreDaoImpl implements TyreDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void addTyre(tyre tyre, int locationID) {
-        String sql = "insert into tyre(modelNo, vehicleType, design, isTubeless, price, percentDiscount, locationID)" +
-                "values(?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, tyre.getModelNo(), tyre.getVehicleType(), tyre.getDesign(), tyre.isTubeless(),
-                tyre.getPrice(), tyre.getPercentDiscount(), locationID);
+    public void addTyre(tyre tyre) {
+        String sql = "insert into tyre(modelNo, vehicleType, design, isTubeless, price, percentDiscount)" +
+                "values(?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, tyre.getModelNo(), tyre.getVehicleType(), tyre.getDesign(), tyre.getIsTubeless(),
+                tyre.getPrice(), tyre.getPercentDiscount());
     }
 
     @Override
@@ -28,9 +33,9 @@ public class TyreDaoImpl implements TyreDao {
     }
 
     @Override
-    public void updateTyre(tyre tyre, int locationID) {
-        String sql = "update tyre set price=?, percentDiscount=?, locationID=? where modelNo=?";
-        jdbcTemplate.update(sql, tyre.getPrice(), tyre.getPercentDiscount(), locationID);
+    public void updateTyre(tyre tyre) {
+        String sql = "update tyre set price=?, percentDiscount=? where modelNo=?";
+        jdbcTemplate.update(sql, tyre.getPrice(), tyre.getPercentDiscount(), tyre.getModelNo());
     }
 
     @Override

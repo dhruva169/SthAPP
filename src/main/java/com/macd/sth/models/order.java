@@ -2,21 +2,30 @@ package com.macd.sth.models;
 
 public class order {
 
-    private int orderID, overheadCharges, amount;
-    private String paymentMode, type;
-    private Boolean status;
+    private int orderID, overheadCharges, amount, custID, quantity;
+    private String paymentMode, modelNo;
+    private String status;
 
-    public order(int orderID, int overheadCharges, int amount, String paymentMode, String type, Boolean status) {
+    public order(int orderID, int overheadCharges, int amount, int custID, String paymentMode, String modelNo, String status, int quantity) {
         this.orderID = orderID;
         this.overheadCharges = overheadCharges;
         this.amount = amount;
+        this.custID = custID;
         this.paymentMode = paymentMode;
-        this.type = type;
+        this.modelNo = modelNo;
         this.status = status;
-
+        this.quantity = quantity;
     }
 
     public order(){}
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public int getOrderID() {
         return orderID;
@@ -42,6 +51,14 @@ public class order {
         this.amount = amount;
     }
 
+    public int getCustID() {
+        return custID;
+    }
+
+    public void setCustID(int custID) {
+        this.custID = custID;
+    }
+
     public String getPaymentMode() {
         return paymentMode;
     }
@@ -50,19 +67,19 @@ public class order {
         this.paymentMode = paymentMode;
     }
 
-    public Boolean getStatus() {
+    public String getModelNo() {
+        return modelNo;
+    }
+
+    public void setModelNo(String modelNo) {
+        this.modelNo = modelNo;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
