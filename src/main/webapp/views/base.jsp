@@ -61,7 +61,7 @@
 <div>
 <%--    <a href="/login">Login</a>--%>
 
-    <button id="LoginBtn" onclick="window.location.href = 'http://localhost:8080/login';">Click Here</button>
+    <button id="LoginBtn" onclick="window.location.href = 'https://sushila-tyre-house.herokuapp.com/login';">Click Here</button>
 
 </div>
 
