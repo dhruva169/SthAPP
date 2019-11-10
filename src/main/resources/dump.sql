@@ -24,125 +24,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `sth` /*!40100 DEFAULT CHARACTER SET ut
 USE `sth`;
 
 --
--- Table structure for table `bank_deposits`
---
-
-DROP TABLE IF EXISTS `bank_deposits`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `bank_deposits` (
-  `amountDeposited` int(11) DEFAULT NULL,
-  `depositDate` varchar(20) NOT NULL,
-  `empID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`depositDate`),
-  UNIQUE KEY `depositDate` (`depositDate`),
-  KEY `empID` (`empID`),
-  CONSTRAINT `bank_deposits_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `bank_deposits`
---
-
-LOCK TABLES `bank_deposits` WRITE;
-/*!40000 ALTER TABLE `bank_deposits` DISABLE KEYS */;
-INSERT INTO `bank_deposits` VALUES (1,'2019-01-01',1),(2300,'2019-02-01',2),(3200,'2019-03-01',2),(4000,'2019-03-03',1),(123098,'2019-06-05',2);
-/*!40000 ALTER TABLE `bank_deposits` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `credit`
---
-
-DROP TABLE IF EXISTS `credit`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `credit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `amount` int(11) DEFAULT NULL,
-  `dueDate` varchar(20) DEFAULT NULL,
-  `custID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `custID` (`custID`),
-  CONSTRAINT `credit_ibfk_1` FOREIGN KEY (`custID`) REFERENCES `customer` (`custid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `credit`
---
-
-LOCK TABLES `credit` WRITE;
-/*!40000 ALTER TABLE `credit` DISABLE KEYS */;
-INSERT INTO `credit` VALUES (1,976547808,'2019-10-02',1),(2,1234,'2019-10-16',2),(3,1234,'2019-10-16',2),(4,1,'2019-06-13',2),(5,1234,'2019-10-16',2),(6,1234,'2019-10-16',2),(7,976547808,'2019-10-02',1);
-/*!40000 ALTER TABLE `credit` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `customer`
---
-
-DROP TABLE IF EXISTS `customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `customer` (
-  `fname` varchar(25) DEFAULT NULL,
-  `lname` varchar(25) DEFAULT NULL,
-  `panNo` char(10) DEFAULT NULL,
-  `aadharNo` char(12) DEFAULT NULL,
-  `phoneNo` char(10) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `custID` int(11) NOT NULL AUTO_INCREMENT,
-  `address` varchar(200) DEFAULT NULL,
-  `businessType` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`custID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `customer`
---
-
-LOCK TABLES `customer` WRITE;
-/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('umesh','mahajan','ASDFg12345','123456789012','9370000660','a@gmail.com',1,'jalgaon','sand'),('pappu','mahajan','ASDFg12345','123456789012','1234567890','b@gmail.com',2,'pune','tyres'),('Dhruva','Mahajan','1234567890','123456789012','758813460','d@gmail.com',3,'pune','stock market');
-/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `delivery`
---
-
-DROP TABLE IF EXISTS `delivery`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `delivery` (
-  `deliveryID` int(11) NOT NULL AUTO_INCREMENT,
-  `deliveryAddress` varchar(200) DEFAULT NULL,
-  `dateOfDelivery` varchar(20) DEFAULT NULL,
-  `dateOfOrderPlaced` varchar(20) DEFAULT NULL,
-  `orderID` int(11) DEFAULT NULL,
-  `vehicleNo` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`deliveryID`),
-  KEY `orderID` (`orderID`),
-  KEY `vehicleNo` (`vehicleNo`),
-  CONSTRAINT `delivery_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `delivery_ibfk_2` FOREIGN KEY (`vehicleNo`) REFERENCES `vehicle` (`vehicleno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `delivery`
---
-
-LOCK TABLES `delivery` WRITE;
-/*!40000 ALTER TABLE `delivery` DISABLE KEYS */;
-INSERT INTO `delivery` VALUES (1,'jalgaon','2019-08-23','2019--8-20',2,'MH19AP1234'),(2,'mumbai','2019-10-01','2019-10-02',2,'MH19AP1234');
-/*!40000 ALTER TABLE `delivery` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `employee`
 --
 
@@ -177,112 +58,34 @@ INSERT INTO `employee` VALUES ('Dhruva','Mahajan','admin','2015-03-04','75888134
 UNLOCK TABLES;
 
 --
--- Table structure for table `empRoles`
+-- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `empRoles`;
+DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `empRoles` (
-  `appRoleID` int(11) NOT NULL AUTO_INCREMENT,
-  `roleName` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`appRoleID`)
+CREATE TABLE `customer` (
+  `fname` varchar(25) DEFAULT NULL,
+  `lname` varchar(25) DEFAULT NULL,
+  `panNo` char(10) DEFAULT NULL,
+  `aadharNo` char(12) DEFAULT NULL,
+  `phoneNo` char(10) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `custID` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(200) DEFAULT NULL,
+  `businessType` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`custID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `empRoles`
+-- Dumping data for table `customer`
 --
 
-LOCK TABLES `empRoles` WRITE;
-/*!40000 ALTER TABLE `empRoles` DISABLE KEYS */;
-INSERT INTO `empRoles` VALUES (1,'admin'),(2,'user');
-/*!40000 ALTER TABLE `empRoles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `inventory`
---
-
-DROP TABLE IF EXISTS `inventory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `inventory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quantity` int(11) DEFAULT NULL,
-  `modelNo` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `modelNo` (`modelNo`),
-  CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`modelNo`) REFERENCES `tyre` (`modelno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `inventory`
---
-
-LOCK TABLES `inventory` WRITE;
-/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,23,'XLRI250+'),(2,12,'ASDF5678'),(4,1234,'CFTHN123');
-/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `location`
---
-
-DROP TABLE IF EXISTS `location`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `location` (
-  `locationID` int(11) NOT NULL AUTO_INCREMENT,
-  `shelfNo` int(11) DEFAULT NULL,
-  `modelNo` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`locationID`),
-  KEY `modelNo` (`modelNo`),
-  CONSTRAINT `location_ibfk_1` FOREIGN KEY (`modelNo`) REFERENCES `tyre` (`modelno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `location`
---
-
-LOCK TABLES `location` WRITE;
-/*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,1,'XLRI250+'),(2,1,'ASDF5678'),(3,3,'CFTHN123');
-/*!40000 ALTER TABLE `location` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order_items`
---
-
-DROP TABLE IF EXISTS `order_items`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `order_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quantity` int(11) DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `modelNo` varchar(25) DEFAULT NULL,
-  `orderID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `modelNo` (`modelNo`),
-  KEY `orderID` (`orderID`),
-  CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`modelNo`) REFERENCES `tyre` (`modelno`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order_items`
---
-
-LOCK TABLES `order_items` WRITE;
-/*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-INSERT INTO `order_items` VALUES (1,2,123,'ASDF5678',2),(2,1,5678,'XLRI250+',1);
-/*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES ('umesh','mahajan','ASDFg12345','123456789012','9370000660','a@gmail.com',1,'jalgaon','sand'),('pappu','mahajan','ASDFg12345','123456789012','1234567890','b@gmail.com',2,'pune','tyres'),('Dhruva','Mahajan','1234567890','123456789012','758813460','d@gmail.com',3,'pune','stock market');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -400,34 +203,6 @@ INSERT INTO `tyre` VALUES ('ASDF5678','bike','straight cut',0,123,10),('CFTHN123
 UNLOCK TABLES;
 
 --
--- Table structure for table `user_role`
---
-
-DROP TABLE IF EXISTS `user_role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `user_role` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `empID` int(11) DEFAULT NULL,
-  `appRoleID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `empID` (`empID`),
-  KEY `appRoleID` (`appRoleID`),
-  CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`appRoleID`) REFERENCES `emproles` (`approleid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_role`
---
-
-LOCK TABLES `user_role` WRITE;
-/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `vehicle`
 --
 
@@ -454,6 +229,237 @@ LOCK TABLES `vehicle` WRITE;
 INSERT INTO `vehicle` VALUES ('MH12AQ3456','2018-01-03',4321,1,0),('MH19AP1234','2019-03-01',12345,12,1);
 /*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+
+--
+-- Table structure for table `bank_deposits`
+--
+
+DROP TABLE IF EXISTS `bank_deposits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `bank_deposits` (
+  `amountDeposited` int(11) DEFAULT NULL,
+  `depositDate` varchar(20) NOT NULL,
+  `empID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`depositDate`),
+  UNIQUE KEY `depositDate` (`depositDate`),
+  KEY `empID` (`empID`),
+  CONSTRAINT `bank_deposits_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bank_deposits`
+--
+
+LOCK TABLES `bank_deposits` WRITE;
+/*!40000 ALTER TABLE `bank_deposits` DISABLE KEYS */;
+INSERT INTO `bank_deposits` VALUES (1,'2019-01-01',1),(2300,'2019-02-01',2),(3200,'2019-03-01',2),(4000,'2019-03-03',1),(123098,'2019-06-05',2);
+/*!40000 ALTER TABLE `bank_deposits` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `credit`
+--
+
+DROP TABLE IF EXISTS `credit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `credit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) DEFAULT NULL,
+  `dueDate` varchar(20) DEFAULT NULL,
+  `custID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `custID` (`custID`),
+  CONSTRAINT `credit_ibfk_1` FOREIGN KEY (`custID`) REFERENCES `customer` (`custid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `credit`
+--
+
+LOCK TABLES `credit` WRITE;
+/*!40000 ALTER TABLE `credit` DISABLE KEYS */;
+INSERT INTO `credit` VALUES (1,976547808,'2019-10-02',1),(2,1234,'2019-10-16',2),(3,1234,'2019-10-16',2),(4,1,'2019-06-13',2),(5,1234,'2019-10-16',2),(6,1234,'2019-10-16',2),(7,976547808,'2019-10-02',1);
+/*!40000 ALTER TABLE `credit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `delivery`
+--
+
+DROP TABLE IF EXISTS `delivery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `delivery` (
+  `deliveryID` int(11) NOT NULL AUTO_INCREMENT,
+  `deliveryAddress` varchar(200) DEFAULT NULL,
+  `dateOfDelivery` varchar(20) DEFAULT NULL,
+  `dateOfOrderPlaced` varchar(20) DEFAULT NULL,
+  `orderID` int(11) DEFAULT NULL,
+  `vehicleNo` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`deliveryID`),
+  KEY `orderID` (`orderID`),
+  KEY `vehicleNo` (`vehicleNo`),
+  CONSTRAINT `delivery_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `delivery_ibfk_2` FOREIGN KEY (`vehicleNo`) REFERENCES `vehicle` (`vehicleno`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `delivery`
+--
+
+LOCK TABLES `delivery` WRITE;
+/*!40000 ALTER TABLE `delivery` DISABLE KEYS */;
+INSERT INTO `delivery` VALUES (1,'jalgaon','2019-08-23','2019--8-20',2,'MH19AP1234'),(2,'mumbai','2019-10-01','2019-10-02',2,'MH19AP1234');
+/*!40000 ALTER TABLE `delivery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `empRoles`
+--
+
+DROP TABLE IF EXISTS `empRoles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `empRoles` (
+  `appRoleID` int(11) NOT NULL AUTO_INCREMENT,
+  `roleName` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`appRoleID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `empRoles`
+--
+
+LOCK TABLES `empRoles` WRITE;
+/*!40000 ALTER TABLE `empRoles` DISABLE KEYS */;
+INSERT INTO `empRoles` VALUES (1,'admin'),(2,'user');
+/*!40000 ALTER TABLE `empRoles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inventory`
+--
+
+DROP TABLE IF EXISTS `inventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `inventory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quantity` int(11) DEFAULT NULL,
+  `modelNo` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `modelNo` (`modelNo`),
+  CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`modelNo`) REFERENCES `tyre` (`modelno`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory`
+--
+
+LOCK TABLES `inventory` WRITE;
+/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES (1,23,'XLRI250+'),(2,12,'ASDF5678'),(4,1234,'CFTHN123');
+/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `location`
+--
+
+DROP TABLE IF EXISTS `location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `location` (
+  `locationID` int(11) NOT NULL AUTO_INCREMENT,
+  `shelfNo` int(11) DEFAULT NULL,
+  `modelNo` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`locationID`),
+  KEY `modelNo` (`modelNo`),
+  CONSTRAINT `location_ibfk_1` FOREIGN KEY (`modelNo`) REFERENCES `tyre` (`modelno`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `location`
+--
+
+LOCK TABLES `location` WRITE;
+/*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,1,'XLRI250+'),(2,1,'ASDF5678'),(3,3,'CFTHN123');
+/*!40000 ALTER TABLE `location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- --
+-- -- Table structure for table `order_items`
+-- --
+
+-- DROP TABLE IF EXISTS `order_items`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+--  SET character_set_client = utf8mb4 ;
+-- CREATE TABLE `order_items` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `quantity` int(11) DEFAULT NULL,
+--   `amount` int(11) DEFAULT NULL,
+--   `modelNo` varchar(25) DEFAULT NULL,
+--   `orderID` int(11) DEFAULT NULL,
+--   PRIMARY KEY (`id`),
+--   KEY `modelNo` (`modelNo`),
+--   KEY `orderID` (`orderID`),
+--   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`modelNo`) REFERENCES `tyre` (`modelno`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderid`) ON DELETE CASCADE ON UPDATE CASCADE
+-- ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --
+-- -- Dumping data for table `order_items`
+-- --
+
+-- LOCK TABLES `order_items` WRITE;
+-- /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
+-- INSERT INTO `order_items` VALUES (1,2,123,'ASDF5678',2),(2,1,5678,'XLRI250+',1);
+-- /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
+-- UNLOCK TABLES;
+
+
+-- --
+-- -- Table structure for table `user_role`
+-- --
+
+-- DROP TABLE IF EXISTS `user_role`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+--  SET character_set_client = utf8mb4 ;
+-- CREATE TABLE `user_role` (
+--   `ID` int(11) NOT NULL AUTO_INCREMENT,
+--   `empID` int(11) DEFAULT NULL,
+--   `appRoleID` int(11) DEFAULT NULL,
+--   PRIMARY KEY (`ID`),
+--   KEY `empID` (`empID`),
+--   KEY `appRoleID` (`appRoleID`),
+--   CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empid`) ON DELETE CASCADE ON UPDATE CASCADE,
+--   CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`appRoleID`) REFERENCES `emproles` (`approleid`) ON DELETE CASCADE ON UPDATE CASCADE
+-- ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --
+-- -- Dumping data for table `user_role`
+-- --
+
+-- LOCK TABLES `user_role` WRITE;
+-- /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+-- /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+-- UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
